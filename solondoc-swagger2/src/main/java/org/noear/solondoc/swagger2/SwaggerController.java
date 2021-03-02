@@ -1,7 +1,9 @@
 package org.noear.solondoc.swagger2;
 
+import io.swagger.models.Info;
 import org.noear.snack.ONode;
 import org.noear.solon.annotation.Controller;
+import org.noear.solon.annotation.Inject;
 import org.noear.solon.annotation.Mapping;
 
 @Controller
@@ -17,7 +19,7 @@ public class SwaggerController {
 
 
     @Mapping("/v2/swagger.json")
-    public String swagger_json(){
+    public String swagger_json() {
         return ONode.stringify(XPluginImp.swagger);
     }
 }
