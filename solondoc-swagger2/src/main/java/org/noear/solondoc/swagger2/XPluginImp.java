@@ -140,6 +140,8 @@ public class XPluginImp implements Plugin {
         Operation operation = new Operation();
         operation.addTag(action.bean().clz().getName());
 
+        operation.summary(route.path);
+
         if (Utils.isNotEmpty(action.produces())) {
             operation.addProduces(action.produces());
         } else {
@@ -150,6 +152,7 @@ public class XPluginImp implements Plugin {
             operation.addConsumes(action.consumes());
         }
 
+        //添加请求参数
         for (ParamWrap p0 : action.method().getParamWraps()) {
             if (p0.getType() == Context.class) {
                 continue;
