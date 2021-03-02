@@ -42,11 +42,11 @@ public class XPluginImp implements Plugin {
         });
 
 
-        app.beanScan(SwaggerController.class);
+        app.beanMake(SwaggerController.class);
 
         Aop.beanOnloaded(this::onAppLoadEnd);
 
-        PrintUtil.info("Swagger", "url: http://localhost:" + app.port() + "/swagger-ui/");
+        PrintUtil.info("Swagger", "url: http://localhost:" + app.port() + "/v2/swagger.json");
     }
 
     private void onAppLoadEnd() {

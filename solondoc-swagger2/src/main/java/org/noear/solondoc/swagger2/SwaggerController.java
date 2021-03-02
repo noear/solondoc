@@ -21,7 +21,7 @@ public class SwaggerController {
     }
 
     @Mapping("/v2/swagger.json")
-    public String xx(){
+    public String swagger_json(){
         return ONode.stringify(XPluginImp.swagger);
     }
 }
