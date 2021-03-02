@@ -46,7 +46,7 @@ public class XPluginImp implements Plugin {
 
         Aop.beanOnloaded(this::onAppLoadEnd);
 
-        PrintUtil.info("Swagger", "url: http://localhost:" + app.port() + "/v2/swagger.json");
+        PrintUtil.info("SwaggerApi", "url: http://localhost:" + app.port() + "/v2/swagger.json");
     }
 
     private void onAppLoadEnd() {
