@@ -14,6 +14,10 @@ public class SwaggerController {
             n.addNew().set("name", "应用接口")
                     .set("location", "/v2/swagger.json")
                     .set("swaggerVersion", "2.0");
+
+            n.addNew().set("name","官方示例")
+                    .set("location","https://petstore.swagger.io/v2/swagger.json")
+                    .set("swaggerVersion", "2.0");
         }).toJson();
     }
 

@@ -42,6 +42,8 @@ public class XPluginImp implements Plugin {
         });
 
 
+
+
         app.beanMake(SwaggerController.class);
 
         Aop.beanOnloaded(this::onAppLoadEnd);
@@ -58,6 +60,7 @@ public class XPluginImp implements Plugin {
 
         swagger.host("localhost:" + Solon.global().port());
         swagger.basePath("/");
+        swagger.scheme(Scheme.HTTP);
 
         buildTags();
 
