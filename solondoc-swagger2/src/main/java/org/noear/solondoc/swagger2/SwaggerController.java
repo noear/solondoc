@@ -1,6 +1,5 @@
-package org.noear.solonfox.swagger2;
+package org.noear.solondoc.swagger2;
 
-import io.swagger.models.Swagger;
 import org.noear.snack.ONode;
 import org.noear.solon.annotation.Controller;
 import org.noear.solon.annotation.Mapping;

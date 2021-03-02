@@ -1,4 +1,4 @@
-package org.noear.solonfox.swagger2;
+package org.noear.solondoc.swagger2;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
