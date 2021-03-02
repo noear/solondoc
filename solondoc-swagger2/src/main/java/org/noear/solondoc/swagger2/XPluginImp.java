@@ -13,6 +13,7 @@ import org.noear.solon.core.Aop;
 import org.noear.solon.core.Plugin;
 import org.noear.solon.core.handle.*;
 import org.noear.solon.core.route.RouteTable;
+import org.noear.solon.core.util.PrintUtil;
 import org.noear.solon.core.wrap.ParamWrap;
 
 import java.util.LinkedHashMap;
@@ -44,6 +45,8 @@ public class XPluginImp implements Plugin {
         app.beanScan(SwaggerController.class);
 
         Aop.beanOnloaded(this::onAppLoadEnd);
+
+        PrintUtil.info("Swagger", "url: http://localhost:" + app.port() + "/swagger-ui/");
     }
 
     private void onAppLoadEnd() {
