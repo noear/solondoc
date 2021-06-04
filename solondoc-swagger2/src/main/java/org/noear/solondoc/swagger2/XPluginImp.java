@@ -12,11 +12,12 @@ import org.noear.solon.annotation.Controller;
 import org.noear.solon.core.Aop;
 import org.noear.solon.core.Plugin;
 import org.noear.solon.core.handle.*;
-import org.noear.solon.core.route.RouteTable;
+import org.noear.solon.core.route.Routing;
 import org.noear.solon.core.util.PrintUtil;
 import org.noear.solon.core.wrap.ParamWrap;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class XPluginImp implements Plugin {
@@ -81,13 +82,13 @@ public class XPluginImp implements Plugin {
     private void buildPaths() {
         Map<String, Path> pathMap = new LinkedHashMap<>();
 
-        for (RouteTable.Route<Handler> route : Solon.global().router().main()) {
-            if (route.target instanceof Action) {
-                Action action = (Action) route.target;
+        for (Routing<Handler> route : Solon.global().router().getAll(Endpoint.main)) {
+            if (route.target() instanceof Action) {
+                Action action = (Action) route.target();
 
                 Path path = new Path();
                 {
-                    switch (route.method) {
+                    switch (route.method()) {
                         case GET: {
                             path.get(buildPathPperation(route, true));
                             break;
@@ -126,21 +127,21 @@ public class XPluginImp implements Plugin {
                     }
                 }
 
-                pathMap.put(route.path, path);
+                pathMap.put(route.path(), path);
             }
         }
 
         swagger.setPaths(pathMap);
     }
 
-    private Operation buildPathPperation(RouteTable.Route<Handler> route, boolean isGet) {
-        Action action = (Action) route.target;
+    private Operation buildPathPperation(Routing<Handler> route, boolean isGet) {
+        Action action = (Action) route.target();
 
 
         Operation operation = new Operation();
         operation.addTag(action.bean().clz().getName());
 
-        operation.summary(route.path);
+        operation.summary(route.path());
 
         if (Utils.isNotEmpty(action.produces())) {
             operation.addProduces(action.produces());
@@ -163,7 +164,7 @@ public class XPluginImp implements Plugin {
             String n1 = "{" + p0.getName() + "}";
             SerializableParameter p1 = null;
 
-            if (route.path.indexOf(n1) > 0) {
+            if (route.path().indexOf(n1) > 0) {
                 p1 = new PathParameter();
             } else {
                 if (isGet) {
